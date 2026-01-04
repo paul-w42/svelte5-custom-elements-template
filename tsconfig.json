@@ -1,0 +1,23 @@
+{	
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "ESNext"],
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "allowJs": false,
+    "checkJs": false,
+    "types": ["vite/client"],
+    "rootDir": "src" // Explicitly set the root directory
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
