@@ -68,9 +68,7 @@ npm publish --access=public
 
 ## Storybook
 
-Storybook is currently setup to test native svelte components, so what we see by executing storybook right now is a svelte component, not a custom element.
-
-Storybook can be configured to consume a custom element that has been built, but this does not support live code reloading (that I know of), and is a little slower in development.
+Storybook is currently setup to test custom web elements (NOT Svelte components), so what we see by executing storybook right now is the custom element as it appears after the build step, not a svelte component inside a svelte application.
 
 Run storybook via:
 
@@ -80,11 +78,18 @@ npm run storybook
 
 This will start the storybook runtime and load a page in your browser that displays the storybook dashboard.  This window will contain a list of components on the left hand side that there are stories for, as well as a story for each component (there can be multiple) that has been included in that comopnents story file.
 
-See the **`./src/stories/Counter.stories.svelte`** file for an example of a stories file. 
+See the **`./src/stories/Counter.stories.ts`** file for an example of a stories file. 
 
-This stories file imports the svelte component from **`./src/lib/Counter.svelte`**, sets up a default meta object, and then below that contains four separate lines detailing four different instances of the component we would like to display, each instance using or exercising the component in a slightly different manner.
+This stories file sets up a default meta object, and then below that contains separate blocks detailing different instances of the component we would like to display, each instance using or exercising the component in a slightly different manner.
 
-[Storybook for Svelte tutorial](https://storybook.js.org/tutorials/intro-to-storybook/svelte/en/get-started/)
+[Storybook for Custom Web Elements](https://storybook.js.org/docs/get-started/frameworks/web-components-vite)
+
+Note: as the configuration currently stands, when you add a new component to test, you must import that component into the **`./.storybook/preview.ts`** file, as done with the **`Counter`** component.
+
+```ts
+  // .storybook/preview.ts import for each component tested
+  import '../src/lib/Counter.svelte';
+```
 
 
 ## Requirements for creating custom elements
