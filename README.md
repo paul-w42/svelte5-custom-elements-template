@@ -84,13 +84,6 @@ This stories file sets up a default meta object, and then below that contains se
 
 [Storybook for Custom Web Elements](https://storybook.js.org/docs/get-started/frameworks/web-components-vite)
 
-Note: as the configuration currently stands, when you add a new component to test, you must import that component into the **`./.storybook/preview.ts`** file, as done with the **`Counter`** component.
-
-```ts
-  // .storybook/preview.ts import for each component tested
-  import '../src/lib/Counter.svelte';
-```
-
 
 ## Requirements for creating custom elements
 
@@ -129,12 +122,13 @@ An example custom component is a simple variation of the default **Counter** com
 See the [Svelte Custom Elements documentation](https://svelte.dev/docs/svelte/custom-elements) page for more information.
 
 
-- Custom Elements must have a **-** (dash) in the name, i.e. **my-element**
-  - use the **`svelte:options`** tag to define attribute names, see [Custom Elements](https://svelte.dev/docs/svelte/custom-elements) for more information
-- define camel-cased prop/attribute names, i.e. "startCount" to "start-count" 
-- must add an import entry to the **`src/index.ts`** file, i.e. for the **Counter** component the entry is: **`import './lib/Counter.svelte';`** 
-- must define the custom element by its registered name in two places inside the **`src/custom-elements.d.ts file`** to define its attribute/prop types. Use the registered attribute names to do this, i.e. **`start-count`** inside the **`Counter`** component, and not **`startCount`** which is used inside the Svelte code
-- valid property types in the **`svelte:options`** props object are 'String', 'Number', 'Boolean', 'Array', and 'Object'.
+- use the **`svelte:options`** tag to define the custom element tag name and props. 
+  - Custom Elements must have a **-** (dash) in the name, i.e. **my-element**
+  - see [Custom Elements](https://svelte.dev/docs/svelte/custom-elements) for more information
+  - prop/attribute names must be converted to kebab-case, i.e. "startCount" to "start-count"
+  - valid property types in the **`svelte:options`** props object are 'String', 'Number', 'Boolean', 'Array', and 'Object'.
+- an import entry must be added to the **`src/index.ts`** file, i.e. for the **Counter** component the entry is: **`import './lib/Counter.svelte';`**, this triggers compilation of the component to a custom web element.
+- define the custom element by its registered name in two places inside the **`src/custom-elements.d.ts file`** to define its attribute/prop types used by consuming applications depending on type. Use the registered attribute names to do this, i.e. **`start-count`** inside the **`Counter`** component, and not **`startCount`** which is used inside the Svelte code
 
 ## Consuming application
 
